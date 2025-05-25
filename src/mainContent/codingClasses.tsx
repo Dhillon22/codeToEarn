@@ -1,15 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
   Dialog,
   DialogClose,
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
 import { CheckCircleIcon, FolderIcon, Loader2, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
 const courseData = [
   {
     title: "Curriculum Highlights",
