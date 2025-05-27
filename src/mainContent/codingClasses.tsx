@@ -1,84 +1,97 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { motion, useAnimation } from "framer-motion";
-import { CheckCircleIcon, FolderIcon, Loader2, X } from "lucide-react";
+import { CheckCircleIcon, FolderIcon, Loader2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 const courseData = [
   {
     title: "Curriculum Highlights",
     content: [
-      "Learn easy coding concepts (OOP).",
-      "Understand programming basics and problem-solving.",
-      "Build websites with HTML, CSS, and JavaScript.",
-      "Create backend apps with Node.js.",
-      "Make mobile apps for Android and iPhone.",
+      "Learn easy coding concepts using object-oriented programming.",
+      "Understand core programming basics and logical problem-solving.",
+      "Build static websites using HTML and CSS.",
+      "Add interactivity with JavaScript.",
+      "Create backend apps using Node.js.",
+      "Develop mobile apps for both Android and iPhone.",
+      "Work on real-world projects during the course.",
+      "Prepare for advanced topics with a strong foundation.",
     ],
   },
   {
     title: "Why Enroll?",
     content: [
-      "Gain real-world coding skills for future careers.",
-      "Build projects to showcase in portfolios.",
-      "Get hands-on experience with web and mobile apps.",
-      "Learn from industry experts with 11+ years experience.",
-      "Boost confidence for college and job interviews.",
+      "Gain real-world coding skills for school and future careers.",
+      "Create portfolio-ready projects to showcase your work.",
+      "Learn through hands-on practice and live examples.",
+      "Get trained by instructors with 11+ years of industry experience.",
+      "Boost confidence for technical interviews and presentations.",
+      "Receive personalized feedback to improve faster.",
+      "Become part of a supportive student community.",
+      "Stand out in college applications with coding credentials.",
     ],
   },
-
   {
     title: "What You'll Learn (Beginner)",
     content: [
-      "OOP & programming fundamentals",
-      "HTML structure & CSS styling",
-      "JavaScript basics & syntax",
-      "Building interactive web pages",
-      "Intro to React components",
-      "Handling events & state",
-      "React Native basics",
-      "Styling mobile apps",
-      "Project building fundamentals",
-      "Deploying simple projects",
+      "Introduction to object-oriented programming and problem-solving.",
+      "Understanding HTML page structure and layout.",
+      "Styling websites using modern CSS techniques.",
+      "Writing basic JavaScript for interactivity.",
+      "Building web pages with interactive forms and buttons.",
+      "Learning the basics of React and components.",
+      "Introduction to mobile development with React Native.",
+      "Deploying simple apps to the web or mobile devices.",
     ],
   },
   {
     title: "What You'll Learn (Advanced)",
     content: [
-      "Advanced JavaScript ES6+ features",
-      "React hooks & context API",
-      "State management with Redux",
-      "Performance optimization",
-      "Testing React components",
-      "Progressive Web Apps (PWAs)",
-      "Mobile navigation techniques",
-      "UI/UX and accessibility ",
-      "Animations with React & Framer Motion",
-      "Cross-platform app deployment",
+      "Master advanced JavaScript features including ES6+.",
+      "Build applications using React hooks and context API.",
+      "Manage complex state with Redux.",
+      "Improve app speed and performance through optimization.",
+      "Write and run unit tests for React components.",
+      "Design progressive web apps for offline use.",
+      "Add animations using Framer Motion.",
+      "Learn how to deploy cross-platform apps to real devices.",
     ],
   },
   {
     title: "Tuition & Plans",
     content: [
-      "Basic Program (4 weeks): ₹2,999",
-      "Comprehensive Program (10 weeks): ₹6,999",
-      "Special discounts available for siblings and referrals.",
+      "Starter Program (4 weeks) – ₹1,999: Introduction to coding for beginners.",
+      "Beginner Program (6 weeks) – ₹3,499: Learn web basics with HTML, CSS, and JavaScript.",
+      "Comprehensive Program (10 weeks) – ₹5,499: Full web and mobile app development.",
+      "Advanced Program (12 weeks) – ₹7,499: Full-stack projects using React and React Native.",
+      "One-on-One Coaching – ₹499 per session: Personalized learning experience.",
+      "Group Discount – 10 percent off for groups of 3 or more students.",
+      "Sibling Discount – 15 percent off for second child from the same family.",
+      "Referral Bonus – ₹500 discount for each successful referral.",
     ],
   },
   {
     title: "FAQs for Parents",
     content: [
-      "No prior coding experience required — we start from the basics.",
-      "Missed sessions are available as recordings, plus personalized support.",
-      "Live interactive classes conducted via Zoom or Google Meet.",
+      "Does my child need prior experience?\nNo, we start from absolute basics.",
+      "What if a session is missed?\nAll classes are recorded and shared with students.",
+      "What platform are the classes on?\nWe use Zoom or Google Meet for live sessions.",
+      "What is the ideal age group?\nBest suited for students from 7th to 12th grade.",
+      "Are the classes interactive?\nYes, they include live coding and real-time Q&A.",
+      "How are students evaluated?\nThrough quizzes, coding tasks, and final projects.",
+      "Will there be certificates?\nYes, certificates are awarded after course completion.",
+      "Is support available outside class hours?\nYes, we provide help via chat and email.",
     ],
   },
 ];
+
 const roadmap = [
   {
     label: "Week 1–2: Programming Foundations",
@@ -191,37 +204,36 @@ export default function CodingClassesPage() {
       <header className="bg-black text-white py-10 px-4 flex flex-col items-center sm:flex-row sm:justify-center sm:gap-6 rounded-md border border-gray-300">
         {/* Logo Image */}
         <img
-          src="/src/assets/logo.png" // Replace with your logo image path or URL
+          src="/codeToEarn/assets/logo.png"
           alt="Techy Logo"
-          className="w-50 h-50 object-contain mb-0 sm:mb-0"
+          className="w-28 h-auto object-contain sm:w-36"
         />
 
         {/* Text Section */}
-        <div className="text-center sm:text-left">
+        <div className="text-center sm:text-left max-w-xl">
           <motion.h1
-            className="text-4xl font-bold"
+            className="text-4xl sm:text-5xl font-extrabold leading-tight"
             initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Learn Coding
+            Code. Create. Conquer.
           </motion.h1>
           <motion.p
-            className="mt-2 text-lg"
+            className="mt-3 text-lg sm:text-xl text-gray-300"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2 }}
           >
-            Teaching coding to students from 7th to 12th grade
+            Fun & practical coding classes for students
           </motion.p>
           <motion.p
-            className="mt-4 italic"
+            className="mt-4 italic text-base sm:text-lg text-gray-400"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            “Empowering Students from 7th to 12th Grade to Build Real Coding
-            Skills & Launch Their Future.”
+            "Learn to build real websites and apps — not just drag and drop."
           </motion.p>
         </div>
       </header>
@@ -253,7 +265,7 @@ export default function CodingClassesPage() {
           </motion.div>
         ))}
       </motion.div>
-
+      {/* Roadmap */}
       <motion.div
         ref={roadmapRef}
         initial={{ opacity: 0, y: 50 }}
@@ -263,72 +275,57 @@ export default function CodingClassesPage() {
       >
         <Card className="p-4">
           <h2 className="text-xl font-semibold mb-4">Course Roadmap</h2>
-          <div className="space-y-2">
+
+          <Accordion type="multiple" className="space-y-3">
             {roadmap.map((week) => (
-              <Dialog key={week.id}>
-                <DialogTrigger asChild>
-                  <Button variant="outline" className="w-full justify-between">
-                    <div className="flex justify-between items-center w-full">
-                      <span>{week.label}</span>
-                      <span
-                        className={`ml-2 text-xs font-semibold px-2 py-1 rounded ${
-                          week.level === "Advanced"
-                            ? "bg-gray-700 text-white"
-                            : "bg-gray-200 text-Black"
-                        }`}
-                      >
-                        {week.level}
-                      </span>
-                    </div>
-                  </Button>
-                </DialogTrigger>
-                <DialogContent
-                  className="p-0 overflow-hidden rounded-md  bg-white
-    [&>button[data-state=closed]]:hidden"
-                >
-                  {/* Custom Close Button */}
-                  <DialogClose className="absolute top-4 right-4 z-10 text-white hover:text-gray-300">
-                    <X className="h-5 w-5" />
-                  </DialogClose>
+              <AccordionItem key={week.id} value={week.id}>
+                <AccordionTrigger className="flex justify-between items-center w-full p-4 rounded-md border border-gray-300 bg-gray-50 hover:bg-gray-100 text-left">
+                  <div className="flex flex-col sm:flex-row justify-between w-full gap-2">
+                    <span className="text-sm font-medium">{week.label}</span>
+                    <span
+                      className={`text-xs font-semibold px-2 py-1 rounded w-max ${
+                        week.level === "Advanced"
+                          ? "bg-gray-700 text-white"
+                          : "bg-gray-200 text-black"
+                      }`}
+                    >
+                      {week.level}
+                    </span>
+                  </div>
+                </AccordionTrigger>
 
-                  <header className="bg-black text-white p-4">
-                    <h3 className="text-lg font-semibold">{week.label}</h3>
-                    <p className="text-sm mt-1 italic">{week.level}</p>
-                  </header>
+                <AccordionContent className="bg-white border border-t-0 border-gray-300 p-6 space-y-6 rounded-b-md">
+                  <ul className="list-disc list-inside space-y-2 text-sm">
+                    {week.content.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
 
-                  <div className="p-6">
-                    <ul className="list-disc list-inside space-y-2 text-sm">
-                      {week.content.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-6 pt-4 border-t text-sm space-y-4">
-                      <div className="bg-gray-100 p-4 rounded-md flex items-start gap-2">
-                        <CheckCircleIcon className="w-5 h-5 text-gray-600 mt-1" />
-                        <div>
-                          <p className="text-gray-800 font-semibold uppercase tracking-wide">
-                            Outcome
-                          </p>
-                          <p className="mt-1 text-gray-900">{week.outcome}</p>
-                        </div>
+                  <div className="pt-4 border-t text-sm space-y-4">
+                    <div className="bg-gray-100 p-4 rounded-md flex items-start gap-2">
+                      <CheckCircleIcon className="w-5 h-5 text-gray-600 mt-1" />
+                      <div>
+                        <p className="text-gray-800 font-semibold uppercase tracking-wide">
+                          Outcome
+                        </p>
+                        <p className="mt-1 text-gray-900">{week.outcome}</p>
                       </div>
+                    </div>
 
-                      <div className="bg-gray-50 p-4 rounded-md border border-gray-300 flex items-start gap-2">
-                        <FolderIcon className="w-5 h-5 text-gray-500 mt-1" />
-                        <div>
-                          <p className="text-gray-700 font-semibold uppercase tracking-wide">
-                            Project Work
-                          </p>
-                          <p className="mt-1 text-gray-800">{week.project}</p>
-                        </div>
+                    <div className="bg-gray-50 p-4 rounded-md border border-gray-300 flex items-start gap-2">
+                      <FolderIcon className="w-5 h-5 text-gray-500 mt-1" />
+                      <div>
+                        <p className="text-gray-700 font-semibold uppercase tracking-wide">
+                          Project Work
+                        </p>
+                        <p className="mt-1 text-gray-800">{week.project}</p>
                       </div>
                     </div>
                   </div>
-                </DialogContent>
-              </Dialog>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </Card>
       </motion.div>
 
