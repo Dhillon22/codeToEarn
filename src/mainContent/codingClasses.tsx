@@ -11,83 +11,68 @@ import { motion, useAnimation } from "framer-motion";
 import { CheckCircleIcon, FolderIcon, Loader2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { Component } from "@/components/vapourEffect";
+import { ContainerScroll } from "@/components/scrollAnimation";
+
 const courseData = [
   {
     title: "Curriculum Highlights",
     content: [
-      "Learn easy coding concepts using object-oriented programming.",
-      "Understand core programming basics and logical problem-solving.",
-      "Build static websites using HTML and CSS.",
-      "Add interactivity with JavaScript.",
-      "Create backend apps using Node.js.",
-      "Develop mobile apps for both Android and iPhone.",
-      "Work on real-world projects during the course.",
-      "Prepare for advanced topics with a strong foundation.",
+      "Master coding from scratch with real-world examples.",
+      "Design websites with HTML, CSS, and JavaScript.",
+      "Build cool apps using Node.js and React Native.",
+      "Solve logic-based challenges using OOP techniques.",
+      "Work on real projects to showcase your skills.",
     ],
   },
   {
     title: "Why Enroll?",
     content: [
-      "Gain real-world coding skills for school and future careers.",
-      "Create portfolio-ready projects to showcase your work.",
-      "Learn through hands-on practice and live examples.",
-      "Get trained by instructors with 11+ years of industry experience.",
-      "Boost confidence for technical interviews and presentations.",
-      "Receive personalized feedback to improve faster.",
-      "Become part of a supportive student community.",
-      "Stand out in college applications with coding credentials.",
+      "Learn from pros with 11+ years of coding experience.",
+      "Build a coding portfolio that stands out in interviews.",
+      "Get personal feedback and hands-on project help.",
+      "Join a fun, interactive, and supportive community.",
+      "Level up your tech game for school, college, or freelancing.",
     ],
   },
   {
     title: "What You'll Learn (Beginner)",
     content: [
-      "Introduction to object-oriented programming and problem-solving.",
-      "Understanding HTML page structure and layout.",
-      "Styling websites using modern CSS techniques.",
-      "Writing basic JavaScript for interactivity.",
-      "Building web pages with interactive forms and buttons.",
-      "Learning the basics of React and components.",
-      "Introduction to mobile development with React Native.",
-      "Deploying simple apps to the web or mobile devices.",
+      "Build webpages using HTML and CSS from day one.",
+      "Write interactive scripts with JavaScript.",
+      "Understand core programming with OOP basics.",
+      "Create your first React and mobile app project.",
+      "Deploy your app live for the world to see.",
     ],
   },
   {
     title: "What You'll Learn (Advanced)",
     content: [
-      "Master advanced JavaScript features including ES6+.",
-      "Build applications using React hooks and context API.",
-      "Manage complex state with Redux.",
-      "Improve app speed and performance through optimization.",
-      "Write and run unit tests for React components.",
-      "Design progressive web apps for offline use.",
-      "Add animations using Framer Motion.",
-      "Learn how to deploy cross-platform apps to real devices.",
+      "Master JavaScript ES6+, hooks, and Redux.",
+      "Build blazing-fast apps using React and PWA tools.",
+      "Test your code like a pro with real test tools.",
+      "Create mobile-ready UIs with animations and effects.",
+      "Launch your full-stack app to real devices and web.",
     ],
   },
   {
     title: "Tuition & Plans",
     content: [
-      "Starter Program (4 weeks) – ₹1,999: Introduction to coding for beginners.",
-      "Beginner Program (6 weeks) – ₹3,499: Learn web basics with HTML, CSS, and JavaScript.",
-      "Comprehensive Program (10 weeks) – ₹5,499: Full web and mobile app development.",
-      "Advanced Program (12 weeks) – ₹7,499: Full-stack projects using React and React Native.",
-      "One-on-One Coaching – ₹499 per session: Personalized learning experience.",
-      "Group Discount – 10 percent off for groups of 3 or more students.",
-      "Sibling Discount – 15 percent off for second child from the same family.",
-      "Referral Bonus – ₹500 discount for each successful referral.",
+      "Starter Program (4 weeks) – ₹1,999: Perfect for beginners.",
+      "Beginner Program (6 weeks) – ₹3,499: Learn to build your first website.",
+      "Full Course (10 weeks) – ₹5,499: Web + Mobile dev mastery.",
+      "Advanced Track (12 weeks) – ₹7,499: Full-stack hands-on projects.",
+      "1:1 Coaching – ₹499/session: Personalized expert help.",
     ],
   },
   {
     title: "FAQs for Parents",
     content: [
-      "Does my child need prior experience?\nNo, we start from absolute basics.",
-      "What if a session is missed?\nAll classes are recorded and shared with students.",
-      "What platform are the classes on?\nWe use Zoom or Google Meet for live sessions.",
-      "What is the ideal age group?\nBest suited for students from 7th to 12th grade.",
-      "Are the classes interactive?\nYes, they include live coding and real-time Q&A.",
-      "How are students evaluated?\nThrough quizzes, coding tasks, and final projects.",
-      "Will there be certificates?\nYes, certificates are awarded after course completion.",
-      "Is support available outside class hours?\nYes, we provide help via chat and email.",
+      "**Does my child need experience?**\nNope! We teach from scratch.",
+      "**What if they miss a class?**\nRecordings + personal support are always available.",
+      "**What platform is used?**\nWe run live sessions on Zoom/Google Meet.",
+      "**Is it suitable for school kids?**\nYes! Best for grades 7–12.",
+      "**Are the sessions fun & engaging?**\nAbsolutely! Interactive coding with live Q&A.",
     ],
   },
 ];
@@ -198,34 +183,50 @@ export default function CodingClassesPage() {
       controls.start({ opacity: 1, y: 0 });
     }
   }, [controls, inView]);
+  const [showLoading, setShowLoading] = useState(true);
 
-  return (
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoading(false);
+    }, 4000); // 4 seconds
+
+    return () => clearTimeout(timer); // cleanup on unmount
+  }, []);
+
+  return showLoading ? (
+    <Component texts={["Code 2 Earn"]} />
+  ) : (
     <div className="bg-white text-black p-0 m-0">
-      <header className="bg-black text-white py-10 px-4 flex flex-col items-center sm:flex-row sm:justify-center sm:gap-6 rounded-md border border-gray-300">
+      <header className="bg-black text-white py-10 px-4 flex flex-col items-center md:flex-row md:justify-center md:gap-6 rounded-md border border-gray-300 flex-wrap mx-auto">
         {/* Logo Image */}
         <img
-          src="/codeToEarn/assets/logo.png"
+          src="/codeToEarn/assets/logo.jpg"
           alt="Techy Logo"
-          className="w-28 h-auto object-contain sm:w-36"
+          className="w-70 h-70 object-contain sm:w-36 drop-shadow-lg  transition-transform duration-300"
         />
-
         {/* Text Section */}
         <div className="text-center sm:text-left max-w-xl">
           <motion.h1
-            className="text-4xl sm:text-5xl font-extrabold leading-tight"
+            className="text-2xl sm:text-5xl font-extrabold leading-tight text-white"
+            style={{
+              textShadow:
+                "0 0 10px #00f, 0 0 20px #00f, 0 0 30px #0ff, 0 0 40px #0ff",
+            }}
             initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Code. Create. Conquer.
+            Learn To Code
           </motion.h1>
+
           <motion.p
             className="mt-3 text-lg sm:text-xl text-gray-300"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2 }}
           >
-            Fun & practical coding classes for students
+            "Interactive lessons, real-world projects, and expert guidance to
+            help you master programming from scratch."{" "}
           </motion.p>
           <motion.p
             className="mt-4 italic text-base sm:text-lg text-gray-400"
@@ -236,9 +237,14 @@ export default function CodingClassesPage() {
             "Learn to build real websites and apps — not just drag and drop."
           </motion.p>
         </div>
+        <img
+          src="/codeToEarn/assets/how2Program.png"
+          alt="Techy Logo"
+          className=" h-30 object-contain w-auto"
+        />
       </header>
 
-      <motion.div
+      <div
         ref={ref}
         initial={{ opacity: 0, y: 50 }}
         animate={controls}
@@ -264,17 +270,22 @@ export default function CodingClassesPage() {
             </Card>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
       {/* Roadmap */}
-      <motion.div
-        ref={roadmapRef}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-xl mx-auto p-6"
+      <ContainerScroll
+        titleComponent={
+          <>
+            <h1 className="text-4xl font-semibold text-black dark:text-white">
+              <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+                Course Roadmap <br />
+                <br />
+              </span>
+            </h1>
+          </>
+        }
       >
-        <Card className="p-4">
-          <h2 className="text-xl font-semibold mb-4">Course Roadmap</h2>
+        <div ref={roadmapRef} className="max-w-4xl mx-auto p-6">
+          {/* <h2 className="text-xl font-semibold mb-4">Course Roadmap</h2> */}
 
           <Accordion type="multiple" className="space-y-3">
             {roadmap.map((week) => (
@@ -326,9 +337,8 @@ export default function CodingClassesPage() {
               </AccordionItem>
             ))}
           </Accordion>
-        </Card>
-      </motion.div>
-
+        </div>
+      </ContainerScroll>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -336,19 +346,8 @@ export default function CodingClassesPage() {
         className="bg-gray-100 rounded-xl max-w-l mx-auto p-6 text-center"
       >
         <h2 className="text-2xl font-semibold">Ready to Join?</h2>
-        <p className="mt-2">Contact us via WhatsApp or Email</p>
-        <p className="mt-2">
-          <strong>WhatsApp:</strong>{" "}
-          <a className="underline" href="https://wa.me/919888266339">
-            9888266339
-          </a>
-        </p>
-        <p className="mt-2">
-          <strong>Email:</strong>{" "}
-          <a className="underline" href="mailto:Khalsa.dhillon22@gmail.com">
-            Khalsa.dhillon22@gmail.com
-          </a>
-        </p>
+        {/* <p className="mt-2">Contact us via WhatsApp</p> */}
+
         <div className="mt-4 flex flex-col sm:flex-row justify-center gap-2">
           <Button
             onClick={() => {
