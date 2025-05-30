@@ -246,9 +246,6 @@ export default function CodingClassesPage() {
 
       <div
         ref={ref}
-        initial={{ opacity: 0, y: 50 }}
-        animate={controls}
-        transition={{ duration: 0.8 }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-6 max-w-screen-xl mx-auto"
       >
         {courseData.map((section) => (
