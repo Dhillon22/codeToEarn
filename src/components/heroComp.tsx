@@ -1,8 +1,5 @@
-import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "./ui/card";
-import { Spotlight } from "./spotlight";
-import { SplineScene } from "./SplineScene";
+import { PhoneCall } from "lucide-react";
 
 function HeroComp() {
   return (

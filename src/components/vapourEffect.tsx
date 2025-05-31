@@ -642,10 +642,12 @@ const createParticles = (
   ctx.imageSmoothingEnabled = true;
 
   if ("fontKerning" in ctx) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (ctx as any).fontKerning = "normal";
   }
 
   if ("textRendering" in ctx) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (ctx as any).textRendering = "geometricPrecision";
   }
 
