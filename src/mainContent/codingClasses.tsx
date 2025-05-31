@@ -278,10 +278,10 @@ export default function CodingClassesPage() {
           </div>
 
           {/* Responsive Spotlight */}
-          <Spotlight
+          {/* <Spotlight
             size={100}
             className="absolute -top-20 left-10 sm:left-20 md:left-60 md:-top-20 bg-white"
-          />
+          /> */}
 
           {/* Responsive 3D Scene */}
           <div className="flex-1 relative h-[300px] sm:h-[400px] md:h-full">
