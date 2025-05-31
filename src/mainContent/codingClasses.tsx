@@ -4,7 +4,7 @@ import { GlowingEffect } from "@/components/glowingEffect";
 import { HeroComp } from "@/components/heroComp";
 import { ContainerScroll } from "@/components/scrollAnimation";
 import { SplineScene } from "@/components/SplineScene";
-import { Spotlight } from "@/components/spotlight";
+// import { Spotlight } from "@/components/spotlight";
 import {
   Accordion,
   AccordionContent,
