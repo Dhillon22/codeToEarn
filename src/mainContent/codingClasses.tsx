@@ -1,3 +1,10 @@
+import { Feature } from "@/components/featureCard";
+import { FlipWords } from "@/components/flipWordsComp";
+import { GlowingEffect } from "@/components/glowingEffect";
+import { HeroComp } from "@/components/heroComp";
+import { ContainerScroll } from "@/components/scrollAnimation";
+import { SplineScene } from "@/components/SplineScene";
+import { Spotlight } from "@/components/spotlight";
 import {
   Accordion,
   AccordionContent,
@@ -7,73 +14,89 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Component } from "@/components/vapourEffect";
 import { motion, useAnimation } from "framer-motion";
-import { CheckCircleIcon, FolderIcon, Loader2 } from "lucide-react";
+import {
+  Book,
+  CheckCircleIcon,
+  Cloud,
+  FileQuestion,
+  FolderIcon,
+  IndianRupee,
+  Loader2,
+  Settings,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Component } from "@/components/vapourEffect";
-import { ContainerScroll } from "@/components/scrollAnimation";
+
+const flipWords = ["to Code", "Web Dev", "Mobile App Dev"];
 
 const courseData = [
   {
     title: "Curriculum Highlights",
-    content: [
+    description: [
       "Master coding from scratch with real-world examples.",
       "Design websites with HTML, CSS, and JavaScript.",
       "Build cool apps using Node.js and React Native.",
       "Solve logic-based challenges using OOP techniques.",
       "Work on real projects to showcase your skills.",
     ],
+    icon: <Settings />,
   },
   {
     title: "Why Enroll?",
-    content: [
+    description: [
       "Learn from pros with 11+ years of coding experience.",
       "Build a coding portfolio that stands out in interviews.",
       "Get personal feedback and hands-on project help.",
       "Join a fun, interactive, and supportive community.",
       "Level up your tech game for school, college, or freelancing.",
     ],
+    icon: <Cloud />,
   },
   {
     title: "What You'll Learn (Beginner)",
-    content: [
+    description: [
       "Build webpages using HTML and CSS from day one.",
       "Write interactive scripts with JavaScript.",
       "Understand core programming with OOP basics.",
       "Create your first React and mobile app project.",
       "Deploy your app live for the world to see.",
     ],
+    icon: <Cloud />,
   },
   {
     title: "What You'll Learn (Advanced)",
-    content: [
+    description: [
       "Master JavaScript ES6+, hooks, and Redux.",
       "Build blazing-fast apps using React and PWA tools.",
       "Test your code like a pro with real test tools.",
       "Create mobile-ready UIs with animations and effects.",
       "Launch your full-stack app to real devices and web.",
     ],
+    icon: <Book />,
   },
   {
     title: "Tuition & Plans",
-    content: [
+    description: [
       "Starter Program (4 weeks) – ₹1,999: Perfect for beginners.",
       "Beginner Program (6 weeks) – ₹3,499: Learn to build your first website.",
       "Full Course (10 weeks) – ₹5,499: Web + Mobile dev mastery.",
       "Advanced Track (12 weeks) – ₹7,499: Full-stack hands-on projects.",
       "1:1 Coaching – ₹499/session: Personalized expert help.",
     ],
+    icon: <IndianRupee />,
   },
   {
     title: "FAQs for Parents",
-    content: [
+    description: [
       "**Does my child need experience?**\nNope! We teach from scratch.",
       "**What if they miss a class?**\nRecordings + personal support are always available.",
       "**What platform is used?**\nWe run live sessions on Zoom/Google Meet.",
       "**Is it suitable for school kids?**\nYes! Best for grades 7–12.",
       "**Are the sessions fun & engaging?**\nAbsolutely! Interactive coding with live Q&A.",
     ],
+    icon: <FileQuestion />,
   },
 ];
 
@@ -216,7 +239,8 @@ export default function CodingClassesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Learn To Code
+            Learn
+            <FlipWords words={flipWords} className="text-white" />
           </motion.h1>
 
           <motion.p
@@ -243,99 +267,136 @@ export default function CodingClassesPage() {
           className=" h-30 object-contain w-auto"
         />
       </header>
+      <HeroComp />
+
+      <div className="flex-1 relative px-4 sm:px-6 md:px-8">
+        <Card className="w-full h-[600px] sm:h-[700px] bg-black/[0.96] relative overflow-hidden rounded-xl">
+          <div className="p-4 sm:p-8 space-y-6">
+            <h1 className="text-3xl sm:text-4xl md:text-[4rem] font-semibold text-white leading-tight">
+              We Focus on You
+            </h1>
+          </div>
+
+          {/* Responsive Spotlight */}
+          <Spotlight
+            size={100}
+            className="absolute -top-20 left-10 sm:left-20 md:left-60 md:-top-20 bg-white"
+          />
+
+          {/* Responsive 3D Scene */}
+          <div className="flex-1 relative h-[300px] sm:h-[400px] md:h-full">
+            <SplineScene
+              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+              className="w-full h-full"
+            />
+          </div>
+        </Card>
+      </div>
 
       <div
         ref={ref}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-6 max-w-screen-xl mx-auto"
       >
-        {courseData.map((section) => (
-          <motion.div
-            key={section.title}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="h-full min-h-[300px] p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-left flex flex-col items-start justify-start">
-              <h2 className="text-xl font-semibold mb-4 bg-red">
-                {section.title}
-              </h2>
-              <ul className="list-disc list-inside space-y-1">
-                {section.content.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </Card>
-          </motion.div>
+        {courseData.map((feature, index) => (
+          <div key={feature.title}>
+            <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
+              <GlowingEffect
+                spread={40}
+                glow={true}
+                disabled={false}
+                proximity={64}
+                inactiveZone={0.01}
+                borderWidth={3}
+              />
+              <Feature key={feature.title} {...feature} index={index} />
+            </div>
+          </div>
         ))}
       </div>
       {/* Roadmap */}
-      <ContainerScroll
-        titleComponent={
-          <>
-            <h1 className="text-4xl font-semibold text-black dark:text-white">
-              <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                Course Roadmap <br />
-                <br />
-              </span>
-            </h1>
-          </>
-        }
-      >
-        <div ref={roadmapRef} className="max-w-4xl mx-auto p-6">
-          {/* <h2 className="text-xl font-semibold mb-4">Course Roadmap</h2> */}
-
-          <Accordion type="multiple" className="space-y-3">
-            {roadmap.map((week) => (
-              <AccordionItem key={week.id} value={week.id}>
-                <AccordionTrigger className="flex justify-between items-center w-full p-4 rounded-md border border-gray-300 bg-gray-50 hover:bg-gray-100 text-left">
-                  <div className="flex flex-col sm:flex-row justify-between w-full gap-2">
-                    <span className="text-sm font-medium">{week.label}</span>
-                    <span
-                      className={`text-xs font-semibold px-2 py-1 rounded w-max ${
-                        week.level === "Advanced"
-                          ? "bg-gray-700 text-white"
-                          : "bg-gray-200 text-black"
-                      }`}
-                    >
-                      {week.level}
-                    </span>
-                  </div>
-                </AccordionTrigger>
-
-                <AccordionContent className="bg-white border border-t-0 border-gray-300 p-6 space-y-6 rounded-b-md">
-                  <ul className="list-disc list-inside space-y-2 text-sm">
-                    {week.content.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-
-                  <div className="pt-4 border-t text-sm space-y-4">
-                    <div className="bg-gray-100 p-4 rounded-md flex items-start gap-2">
-                      <CheckCircleIcon className="w-5 h-5 text-gray-600 mt-1" />
-                      <div>
-                        <p className="text-gray-800 font-semibold uppercase tracking-wide">
-                          Outcome
-                        </p>
-                        <p className="mt-1 text-gray-900">{week.outcome}</p>
+      <div className="bg-black ">
+        <ContainerScroll
+          titleComponent={
+            <>
+              <h1 className="text-4xl font-semibold text-white dark:text-white">
+                <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+                  Course Roadmap <br />
+                  <br />
+                </span>
+              </h1>
+            </>
+          }
+        >
+          <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
+            <GlowingEffect
+              spread={40}
+              glow={true}
+              disabled={false}
+              proximity={64}
+              inactiveZone={0.01}
+              borderWidth={3}
+            />
+            <div
+              ref={roadmapRef}
+              className="max-w-4xl mx-auto p-6 h-full overflow-y-auto"
+            >
+              {/* <h2 className="text-xl font-semibold mb-4">Course Roadmap</h2> */}
+              <Accordion type="single" collapsible className="space-y-3">
+                {roadmap.map((week) => (
+                  <AccordionItem key={week.id} value={week.id}>
+                    <AccordionTrigger className="flex justify-between items-center w-full p-4 rounded-md border border-gray-300 bg-gray-50 hover:bg-gray-100 text-left">
+                      <div className="flex flex-col sm:flex-row justify-between w-full gap-2">
+                        <span className="text-sm font-medium">
+                          {week.label}
+                        </span>
+                        <span
+                          className={`text-xs font-semibold px-2 py-1 rounded w-max ${
+                            week.level === "Advanced"
+                              ? "bg-gray-700 text-white"
+                              : "bg-gray-200 text-black"
+                          }`}
+                        >
+                          {week.level}
+                        </span>
                       </div>
-                    </div>
+                    </AccordionTrigger>
 
-                    <div className="bg-gray-50 p-4 rounded-md border border-gray-300 flex items-start gap-2">
-                      <FolderIcon className="w-5 h-5 text-gray-500 mt-1" />
-                      <div>
-                        <p className="text-gray-700 font-semibold uppercase tracking-wide">
-                          Project Work
-                        </p>
-                        <p className="mt-1 text-gray-800">{week.project}</p>
+                    <AccordionContent className="bg-white border border-t-0 border-gray-300 p-6 space-y-6 rounded-b-md">
+                      <ul className="list-disc list-inside space-y-2 text-sm">
+                        {week.content.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+
+                      <div className="pt-4 border-t text-sm space-y-4">
+                        <div className="bg-gray-100 p-4 rounded-md flex items-start gap-2">
+                          <CheckCircleIcon className="w-5 h-5 text-gray-600 mt-1" />
+                          <div>
+                            <p className="text-gray-800 font-semibold uppercase tracking-wide">
+                              Outcome
+                            </p>
+                            <p className="mt-1 text-gray-900">{week.outcome}</p>
+                          </div>
+                        </div>
+
+                        <div className="bg-gray-50 p-4 rounded-md border border-gray-300 flex items-start gap-2">
+                          <FolderIcon className="w-5 h-5 text-gray-500 mt-1" />
+                          <div>
+                            <p className="text-gray-700 font-semibold uppercase tracking-wide">
+                              Project Work
+                            </p>
+                            <p className="mt-1 text-gray-800">{week.project}</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </ContainerScroll>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
+        </ContainerScroll>
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
