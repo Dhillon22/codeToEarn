@@ -58,26 +58,48 @@ const courseData = [
 ];
 const faqs = [
   {
-    question: "Does my child need experience?",
-    answer: "Nope! We teach from scratch.",
+    question: "Does my child need any prior experience in coding?",
+    answer:
+      "Not at all! We teach from scratch, starting with the basics of programming.",
   },
   {
-    question: "What if they miss a class?",
-    answer: "Recordings + personal support are always available.",
+    question: "What happens if a student misses a class?",
+    answer:
+      "No worries! All sessions are recorded and personal doubt-clearing support is provided.",
   },
   {
-    question: "What platform is used?",
-    answer: "We run live sessions on Zoom/Google Meet.",
+    question: "What platform do you use for classes?",
+    answer: "We conduct our live, interactive classes via Zoom or Google Meet.",
   },
   {
-    question: "Is it suitable for school kids?",
-    answer: "Yes! Best for grades 7–12.",
+    question: "Are these classes suitable for school students?",
+    answer:
+      "Yes! The curriculum is designed for students from Grade 7 to 12, but open to all who are interested.",
+  },
+
+  {
+    question: "Is the mode of teaching online or offline?",
+    answer:
+      "Classes are 100% online so students can join from anywhere in India or abroad.",
+  },
+
+  {
+    question: "Can schools or colleges invite you for guest lectures?",
+    answer:
+      "Yes! We offer guest lectures and coding workshops for schools, colleges, and tech events.",
   },
   {
-    question: "Are the sessions fun & engaging?",
-    answer: "Absolutely! Interactive coding with live Q&A.",
+    question: "What is the structure of the sessions?",
+    answer:
+      "Sessions are live, Zoom-based, with practical coding, interactive Q&A, and project walkthroughs.",
+  },
+  {
+    question: "What topics will students learn?",
+    answer:
+      "We teach programming basics, web and mobile app development, real-world project building, and tech career guidance.",
   },
 ];
+
 const tutionPlans = {
   title: "Tuition & Plans",
   description: [
@@ -186,7 +208,7 @@ const plansData: TimelineItem[] = [
     id: 1,
     level: "Starter",
     title: "Starter Program",
-    price: "1000",
+    price: "799",
     content: [
       "Introduction to programming basics",
       "Understanding HTML & CSS",
@@ -198,12 +220,13 @@ const plansData: TimelineItem[] = [
     outcome: "Get introduced to programming fundamentals.",
     project: "Complete simple HTML/CSS exercises.",
     relatedIds: [],
+    duration: "3 weeks",
   },
   {
     id: 2,
     level: "Beginner",
     title: "Beginner Program",
-    price: "1500",
+    price: "1399",
     content: [
       "Learn HTML5 and semantic structure",
       "Build layouts with CSS and Flexbox",
@@ -215,12 +238,13 @@ const plansData: TimelineItem[] = [
     outcome: "Build and deploy a basic website.",
     project: "Create a personal portfolio site.",
     relatedIds: [],
+    duration: "4 weeks",
   },
   {
     id: 3,
     level: "Intermediate",
     title: "Full Course",
-    price: "3000",
+    price: "2599",
     content: [
       "Responsive design with Tailwind CSS",
       "JavaScript DOM manipulation",
@@ -232,12 +256,13 @@ const plansData: TimelineItem[] = [
     outcome: "Master both web and mobile app development.",
     project: "Build a responsive website and a simple mobile app.",
     relatedIds: [4],
+    duration: "6 weeks",
   },
   {
     id: 4,
     level: "Advanced",
     title: "Advanced Track",
-    price: "6000",
+    price: "4599",
     content: [
       "Full-stack app development (MERN)",
       "API integration and database handling",
@@ -249,6 +274,7 @@ const plansData: TimelineItem[] = [
     outcome: "Build real-world full-stack applications.",
     project: "Create a full-stack app with backend integration.",
     relatedIds: [],
+    duration: "8 weeks",
   },
   {
     id: 5,
@@ -266,6 +292,7 @@ const plansData: TimelineItem[] = [
     outcome: "Clarify doubts, get interview tips or review code.",
     project: "Custom guidance based on your goals.",
     relatedIds: [],
+    duration: "Per Class",
   },
 ];
 export { courseData, faqs, plansData, roadmap, tutionPlans };

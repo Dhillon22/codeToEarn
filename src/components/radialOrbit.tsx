@@ -12,6 +12,7 @@ export interface TimelineItem {
   outcome: string;
   project: string;
   relatedIds: number[];
+  duration: string;
 }
 
 interface RadialOrbitalTimelineProps {

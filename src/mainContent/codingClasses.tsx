@@ -27,7 +27,7 @@ import RadialOrbitalTimeline, {
 } from "@/components/radialOrbit";
 import NumberFlow from "@number-flow/react";
 
-const flipWords = ["to Code", "Web Dev", "Mobile App Dev"];
+const flipWords = ["to Code", "Web Dev", "Mobile App Dev", "to be AI ready"];
 
 // courseData and roadmap remain unchanged...
 
@@ -260,29 +260,35 @@ export default function CodingClassesPage() {
                 title: "Still have questions?",
                 description: "We're here to help you",
                 buttonText: "Contact Support",
-                onContact: () => console.log("Contact support clicked"),
+                onContact: () =>
+                  (window.location.href = "https://wa.me/919888266339"),
               }}
             />
           </section>
           <section className="bg-black">
             <RadialOrbitalTimeline
-              titleText={"Programs"}
+              titleText={"Online Programs"}
               timelineData={plansData}
               renderChildContent={(item: TimelineItem) => (
-                <Card className="absolute top-0 left-1/2 -translate-x-1/2 w-64 bg-black/90 backdrop-blur-lg border-white/30 shadow-xl shadow-white/10 overflow-visible text-white">
+                <Card className="absolute top-0 left-1/2 -translate-x-1/2 w-64 bg-black/90 backdrop-blur-lg border-white/30 shadow-xl shadow-white/10 overflow-visible text-white gap-0">
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-white/50"></div>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm mt-2 text-white">
-                      {item.title}
+                  <CardHeader className="">
+                    <CardTitle className="text-sm items-center text-white">
+                      {item.title}{" "}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex  h-6 px-2 py-0 mx-auto text-l rounded-none border-white/20 bg-transparent hover:bg-white/10 text-white/80 hover:text-white transition-all"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        {item.duration}
+                      </Button>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="text-xs text-white/80">
-                    <ul className="list-disc list-inside space-y-2 text-sm text-left">
-                      {item.content.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>{" "}
-                    <span className="text-5xl font-bold tracking-tight text-white">
+                    <span className="text-3xl font-bold tracking-tight text-white">
                       <NumberFlow
                         value={Number(item.price)}
                         format={{
@@ -299,7 +305,13 @@ export default function CodingClassesPage() {
                         className="font-variant-numeric: tabular-nums"
                       />
                     </span>
-                    {item.relatedIds.length > 0 && (
+                    <ul className="list-disc list-inside space-y-2 text-sm text-left">
+                      {item.content.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+
+                    {/* {item.relatedIds.length > 0 && (
                       <div className="mt-4 pt-3 border-t border-white/10">
                         <div className="flex items-center mb-2">
                           <h4 className="text-xs uppercase tracking-wider font-medium text-white/70">
@@ -327,7 +339,7 @@ export default function CodingClassesPage() {
                           })}
                         </div>
                       </div>
-                    )}
+                    )} */}
                   </CardContent>
                 </Card>
               )}
